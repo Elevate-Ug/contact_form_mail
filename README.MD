@@ -19,33 +19,34 @@ The first you have need to do is to first Install the **virtualenv package**
 
 The virtualenv package is required to create virtual environments. You can install it with pip:
 
-'''
- pip install virtualenv  
-'''
+~~~
+pip install virtualenv  
+~~~
 
 Now create a virtual environment
-'''
+~~~
 virtualenv venv
-'''
+~~~
+
 
 **However**
 If you are you are using the latest versions of python, all you need to do is run. 
-'''
+~~~
 python -m venv venv
-'''
+~~~
 
 # 2. Active your virtual environment:
 To activate your vitual env 
-'''
+~~~
 source venv/bin/activate
-'''
+~~~
 
 After activating your virtual environment, you need to head to your project folder 
 #  3. Install the packages
 To install the project packages
-'''
+~~~
 pip install -r requirements.txt
-'''
+~~~
 this installs all the dependence's to your virtual env 
 
 # 4.Rename the .env_example file to .env
@@ -54,11 +55,11 @@ to able to be used
 
 
 # 5.Run a django Migrations for the project 
-'''
+~~~
 python manage.py migrate 
-'''
+~~~
 
 # 6.Run the development server 
-'''
+~~~
 python manage.py runserver 
-''' 
+~~~
