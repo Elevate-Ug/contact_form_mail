@@ -1,0 +1,88 @@
+{% extends 'registration/main.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+{% block title %}
+    Login Page
+{% endblock title %}
+    
+
+
+{% block main-content %}
+<main id="page-content" class="d-flex nm-aic nm-vh-md-100">
+    <!-- // Logo wrapper -->
+    <div id="logo-container">
+        <a class="d-none d-md-flex" href="#" aria-label="Nimoy">
+            <img src="{% static 'logins/images/logoReversed.png' %}" alt="Logo">
+        </a>
+        <a class="d-flex d-md-none" href="#" aria-label="Nimoy">
+            <img src="{% static 'logins/images/logo.png' %}" alt="Logo">
+        </a>
+    </div>
+    <!-- Logo wrapper // -->
+
+    <!-- // Non-form side -->
+    <div id="non-form-side" class="col-md-4 col-lg-4 col-xl-4 d-none d-md-flex nm-aic nm-vh-100">
+        <div class="overlay"></div>
+    </div>
+    <!-- Non-form Side // -->
+    
+    <!-- // Form side -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 nm-st nm-st-md">
+               
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="nm-mb-2 nm-mb-md-2">
+                        <h2>Welcome Back</h2>
+                        <p>Login to your account</p>
+                    </div>
+                    <div class="nm-mb-2 nm-mb-md-2">
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="text-center alert alert-{{ message.tags }}">
+                                {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputEmail">Username</label>
+                        <!-- <input type="email" class="form-control" id="inputEmail" tabindex="1" placeholder="Email address" required> -->
+                        {% render_field form.username class+="form-control" tabindex="1" placeholder="Email address"  %}
+
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputPassword">
+                            <span class="d-flex nm-jcb nm-aic">
+                                Password
+                                <a class="nm-lu nm-ct" href="#">Forgot Password?</a>
+                            </span>
+                        </label>
+                        {% render_field form.password class+="form-control" tabindex="2" placeholder="********"  %}
+                    </div>
+                    
+                    <div class="row nm-aic nm-mb-2">
+                        <div class="col-sm-6 nm-mb-1 nm-mb-sm-0">
+                            <span class="nm-fs-1 nm-tm">Don't have an account?</span>
+                            <a class="nm-fs-1 nm-fw-bd" href="{% url 'signup' %}">Signup</a>
+                        </div>
+                        
+                        <div class="col-sm-6 nm-sm-tr">
+                            <button type="submit" class="btn btn-primary nm-hvr nm-btn-1">Log In</button>
+                        </div>
+                    </div>	
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Form Side // -->
+</main>
+    
+{% endblock main-content %}
+    
