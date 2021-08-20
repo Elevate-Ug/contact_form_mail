@@ -6,6 +6,9 @@ from .views import SignupPageView
 
 
 class SignupPageTests(TestCase):
+    username = 'newuser'
+    email = 'newuser@email.com'
+
     def setUp(self):
         url = reverse('signup')
         self.response = self.client.get(url)
@@ -28,3 +31,11 @@ class SignupPageTests(TestCase):
             view.func.__name__,
             SignupPageView.as_view().__name__
         )
+
+    def test_signup_form_sucess(self):
+        new_user = User.objects.create_user(self.username, self.email)
+        self.assertEqual(User.objects.all().count(), 1)
+        self.assertEqual(User.objects.all()
+                         [0].username, self.username)
+        self.assertEqual(User.objects.all()
+                         [0].email, self.email)
