@@ -33,13 +33,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 nm-st nm-st-md">
-                <form method="POST">
+                <form action="{% url 'authentication:signup' %}" method="POST">
                     {% csrf_token %}
                     <div class="nm-mb-2 nm-mb-md-2">
-                        <h2>Welcome to Nimoy</h2>
+                        <h2>Welcome</h2>
                         <p>Fill out the form to register</p>
                     </div>
-
+                    {% if sign_up_errors %}
+                        <div class="alert alert-danger">
+                        {{sign_up_errors}}
+                        </div>
+                    {% endif %}
                     <div class="form-group">
                         <label for="inputEmail">Username</label>
                         {% render_field form.username class+="form-control" tabindex="1" placeholder="Username "  %}
@@ -63,7 +67,9 @@
 
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="termsAndConditions" required>
-                        <label class="form-check-label nm-check" for="termsAndConditions">I agree to the <a class="nm-lu nm-ct" href="#">Terms and Conditions</a></label>
+                        <label class="form-check-label nm-check" for="termsAndConditions">
+                            I agree to the <a class="nm-lu nm-ct" href="#">Terms and Conditions</a>
+                        </label>
                     </div>
                     
                     <div class="row nm-aic nm-mb-2">

@@ -22,7 +22,6 @@ urlpatterns = [
     # user management apps
     path('accounts/', include('django.contrib.auth.urls')),
 
-
     # local apps
-    path('accounts/', include('user.urls')),
+    path('', include('user.urls')),
 ]
